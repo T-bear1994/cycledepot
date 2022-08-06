@@ -1,0 +1,52 @@
+<p>
+  <strong>Name:</strong>
+  <%= @shop.name %>
+</p>
+
+<p>
+  <strong>Prefecture:</strong>
+  <%= @shop.prefecture %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @shop.city %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @shop.address %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @shop.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @shop.longitude %>
+</p>
+
+<p>
+  <strong>Business hour:</strong>
+  <%= @shop.business_hour %>
+</p>
+
+<p>
+  <strong>Cashless:</strong>
+  <%= @shop.cashless %>
+</p>
+
+<p>
+  <strong>Bike rack:</strong>
+  <%= @shop.bike_rack %>
+</p>
+
+<p>
+  <strong>Remarks:</strong>
+  <%= @shop.remarks %>
+</p>
+
+<%= link_to 'Edit', edit_shop_path(@shop) %> |
+<%= link_to 'Back', shops_path %>

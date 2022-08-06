@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cycle Depot</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="header">
+      <h1><%= link_to "Cycle Depot", shops_path %></h1>
+      <nav>
+        <% if user_signed_in? %>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to "ログイン", new_user_session_path %>
+        <% end %>
+      </nav>
+    </header>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= yield %>
+  </body>
+</html>
