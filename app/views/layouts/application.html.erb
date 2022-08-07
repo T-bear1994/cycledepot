@@ -11,9 +11,13 @@
 
   <body>
     <header class="header">
-      <h1><%= link_to "Cycle Depot", shops_path %></h1>
+      <h1><%= link_to image_tag("logo.png", class:"header-logo"), shops_path %></h1>
       <nav>
-        <% if user_signed_in? %>
+        <% if current_user.admin? %>
+          <%= link_to "マイページ", user_path(current_user.id) %>
+
+        <% elsif user_signed_in? %>
+          <%= link_to "マイページ", user_path(current_user.id) %>
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
         <% else %>
           <%= link_to "ログイン", new_user_session_path %>
