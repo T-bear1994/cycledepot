@@ -2,6 +2,7 @@ class Shop < ApplicationRecord
   has_many :favorites
   has_many :saved_shops
   has_many :browsing_histories
+  has_many :shop_genres
   validates :name, length: { maximum: 255 }
   validates :prefecture, length: { maximum: 10 }
   validates :city, length: { maximum: 255 }
