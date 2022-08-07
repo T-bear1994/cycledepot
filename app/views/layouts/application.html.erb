@@ -13,14 +13,16 @@
     <header class="header">
       <h1><%= link_to image_tag("logo.png", class:"header-logo"), shops_path %></h1>
       <nav>
-        <% if current_user.admin? %>
-          <%= link_to "マイページ", user_path(current_user.id) %>
-
-        <% elsif user_signed_in? %>
+        <% if user_signed_in? && current_user.admin == false %>
           <%= link_to "マイページ", user_path(current_user.id) %>
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        <% else %>
+        <% elsif user_signed_in? == false %>
           <%= link_to "ログイン", new_user_session_path %>
+        <% else %>
+          <%= link_to "マイページ", user_path(current_user.id) %>
+          <%= link_to "ジャンル一覧", genres_path %>
+          <%= link_to "ショップ登録", new_shop_path %>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
         <% end %>
       </nav>
     </header>
