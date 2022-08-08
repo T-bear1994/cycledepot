@@ -3,6 +3,18 @@
 <img src="#">
 <p>ライド中のお店探しは<br><span>サイクルデポ</span></p>
 
+<h2>ショップ検索</h2>
+<%= search_form_for @q do |f| %>
+  <%= f.label :name, "店名" %>
+  <%= f.search_field :name_cont %>
+  <%= f.label :prefecture, "都道府県" %>
+  <%= f.select :prefecture_eq, Shop.prefectures.keys, {} %>
+  <%= f.label :genres, "ジャンル" %>
+  <%= f.search_field :genres_name_cont %>
+  <br />
+  <%= f.submit "検索" %>
+<% end %>
+
 <h2>ショップリスト</h2>
 <table>
   <thead>
@@ -12,7 +24,7 @@
       <th></th>
       <th>Cashless</th>
       <th>Bike rack</th>
-      <th colspan="1"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -24,6 +36,8 @@
         <td><%= shop.city %></td>
         <td><%= shop.cashless %></td>
         <td><%= shop.bike_rack %></td>
+        <td><%= shop.favorites.count %></td>
+        <td><%= shop.saved_shops.count %></td>
       </tr>
     <% end %>
   </tbody>

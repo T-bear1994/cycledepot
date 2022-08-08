@@ -65,8 +65,8 @@ ActiveRecord::Schema.define(version: 2022_08_04_214144) do
     t.float "latitude", null: false
     t.float "longitude", null: false
     t.text "business_hour", null: false
-    t.boolean "cashless", null: false
-    t.boolean "bike_rack", null: false
+    t.boolean "cashless", null: false, default: false
+    t.boolean "bike_rack", null: false, default: false
     t.text "remarks"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
