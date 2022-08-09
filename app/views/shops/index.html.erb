@@ -8,9 +8,13 @@
   <%= f.label :name, "店名" %>
   <%= f.search_field :name_cont %>
   <%= f.label :prefecture, "都道府県" %>
-  <%= f.select :prefecture_eq, Shop.prefectures.keys, {} %>
-  <%= f.label :genres, "ジャンル" %>
-  <%= f.search_field :genres_name_cont %>
+  <%= f.select :prefecture_eq_any, Shop.prefectures.to_a, { include_blank: "指定なし" } %>
+  <%= f.label :genres_name, "ジャンル" %>
+  <%= f.collection_select :genres_id_eq, @genres, :id, :name, { include_blank: "指定なし" } %>
+  <%= f.label :cashless, "キャッシュレス" %>
+  <%= f.check_box :cashless_true, {}, checked_value = "true", unchecked_value= "" %>
+  <%= f.label :bile_rack, "サイクルラック" %>
+  <%= f.check_box :bike_rack_true, {}, ckecked_value = "true", unchecked_value = "" %>
   <br />
   <%= f.submit "検索" %>
 <% end %>

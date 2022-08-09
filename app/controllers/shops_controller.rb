@@ -4,6 +4,7 @@ class ShopsController < ApplicationController
 
   # GET /shops or /shops.json
   def index
+    @genres = Genre.all
     @q = Shop.ransack(params[:q])
     @shops = @q.result(distinct: true)
   end
