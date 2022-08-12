@@ -2,8 +2,9 @@
 
 <% User.all.each do |user| %>
   <div>
-    <%= user.name %>
-    <%= link_to "編集", edit_user_registration_path %>
+    <%= user.name  %>
+    <%= "(admin)" if user.admin  %>
+    <%= link_to "編集", edit_user_registration_path(user) %>
     <%= link_to "削除", registration_path(User.find(user.id)), data: { confirm: "#{user.name}を本当に削除してよろしいですか？" }, method: :delete %></p>
   </div>
 <% end %>
