@@ -1,6 +1,14 @@
 <p>
   <strong>名前:</strong>
-  <%= @shop.name %>
+  <%= @shop.name %><br />
+  <% @shop.genres.each do |genre| %>
+    <%= genre.name %>
+  <% end %>
+</p>
+
+<p>
+  お気に入り数:<%= @shop.favorites.count %></td>
+  保存数:<%= @shop.saved_shops.count %></td>
 </p>
 
 <p>
