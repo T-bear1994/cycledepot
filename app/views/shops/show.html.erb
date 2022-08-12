@@ -1,31 +1,11 @@
 <p>
-  <strong>Name:</strong>
+  <strong>名前:</strong>
   <%= @shop.name %>
 </p>
 
 <p>
-  <strong>Prefecture:</strong>
-  <%= @shop.prefecture %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @shop.city %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @shop.address %>
-</p>
-
-<p>
-  <strong>Latitude:</strong>
-  <%= @shop.latitude %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @shop.longitude %>
+  <strong>所在地:</strong>
+  <%= "#{@shop.prefecture}#{@shop.city}#{@shop.address}" %>
 </p>
 
 <p>
@@ -35,12 +15,16 @@
 
 <p>
   <strong>Cashless:</strong>
-  <%= @shop.cashless %>
+  <% if @shop.cashless == true %>
+    対応
+  <% end %>
 </p>
 
 <p>
   <strong>Bike rack:</strong>
-  <%= @shop.bike_rack %>
+  <% if @shop.bike_rack == true %>
+    有
+  <% end %>
 </p>
 
 <p>
@@ -48,5 +32,7 @@
   <%= @shop.remarks %>
 </p>
 
-<%= link_to 'Edit', edit_shop_path(@shop) %> |
+<% if current_user.admin? %>
+  <%= link_to 'Edit', edit_shop_path(@shop) %><br />
+<% end %>
 <%= link_to 'Back', shops_path %>
