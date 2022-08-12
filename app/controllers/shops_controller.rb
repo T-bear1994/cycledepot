@@ -11,6 +11,8 @@ class ShopsController < ApplicationController
 
   # GET /shops/1 or /shops/1.json
   def show
+    add_browsing_histories
+    delete_browsing_histories
   end
 
   # GET /shops/new
@@ -69,5 +71,18 @@ class ShopsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def shop_params
       params.require(:shop).permit(:name, :prefecture, :city, :address, :latitude, :longitude, :business_hour, :cashless, :bike_rack, :remarks)
+    end
+
+    def add_browsing_histories
+      @browsing_history = BrowsingHistory.new
+      @browsing_history.user_id = current_user.id
+      @browsing_history.shop_id = @shop.id
+      @browsing_history.save!
+    end
+
+    def delete_browsing_histories
+      if current_user.browsing_histories.count > 3
+        current_user.browsing_histories.first.destroy!
+      end
     end
 end

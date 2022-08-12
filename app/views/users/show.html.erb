@@ -1,2 +1,43 @@
 <h1>My page</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+
+<h2>登録情報</h2>
+<p>
+  <strong>ユーザーネーム:</strong>
+  <%= @user.name %>
+</p>
+<p>
+  <strong>メールアドレス:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <%= link_to "編集",  edit_user_registration_path %>
+</p>
+
+<h2>保存したショップ</h2>
+<% @user.saved_shops.each do |saved| %>
+  <% shop = Shop.find(saved.shop_id) %>
+  <div onclick="location.href='<%= shop_path(shop.id) %>'" >
+    <%= shop.name %>
+    <%= shop.prefecture %>
+    <%= shop.city %>
+    <%= shop.cashless %>
+    <%= shop.bike_rack %>
+    <%= shop.favorites.count %>
+    <%= shop.saved_shops.count %>
+  </div>
+<% end %>
+
+<h2>最近閲覧したショップ</h2>
+<% @user.browsing_histories.each do |browsing_history| %>
+  <% shop = Shop.find(browsing_history.shop_id) %>
+  <div onclick="location.href='<%= shop_path(shop.id) %>'" >
+    <%= shop.name %>
+    <%= shop.prefecture %>
+    <%= shop.city %>
+    <%= shop.cashless %>
+    <%= shop.bike_rack %>
+    <%= shop.favorites.count %>
+    <%= shop.saved_shops.count %>
+  </div>
+<% end %>
