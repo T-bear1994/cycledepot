@@ -10,9 +10,9 @@ class User < ApplicationRecord
   validates :name, length: { maximum: 255 }
   validates :email, length: { maximum: 255 }
   validates :password, length: { in: 6..255 }
+  validates :admin, inclusion: [true, false]
   with_options presence: true do
     validates :name
     validates :email
-    validates :admin
   end
 end
