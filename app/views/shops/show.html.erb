@@ -42,7 +42,7 @@
   XXXX
 </p>
 
-<% if current_user.admin? %>
+<% if current_user && current_user.admin? %>
   <%= link_to '編集', edit_shop_path(@shop) %><br />
 <% end %>
 <%= link_to '戻る', shops_path %>

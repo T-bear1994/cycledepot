@@ -11,8 +11,10 @@ class ShopsController < ApplicationController
 
   # GET /shops/1 or /shops/1.json
   def show
-    add_browsing_histories
-    delete_browsing_histories
+    if current_user
+      add_browsing_histories
+      delete_browsing_histories
+    end
   end
 
   # GET /shops/new
