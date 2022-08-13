@@ -11,36 +11,38 @@
   保存数:<%= @shop.saved_shops.count %></td>
 </p>
 
+<p><em>ショップ情報</em></p>
 <p>
   <strong>所在地:</strong>
   <%= "#{@shop.prefecture}#{@shop.city}#{@shop.address}" %>
 </p>
 
 <p>
-  <strong>Business hour:</strong>
+  <strong>営業時間:</strong>
   <%= @shop.business_hour %>
 </p>
 
 <p>
-  <strong>Cashless:</strong>
-  <% if @shop.cashless == true %>
-    対応
-  <% end %>
+  <strong>キャッシュレス:</strong>
+  <%= @shop.cashless == true ? "対応" : "非対応" %>
 </p>
 
 <p>
-  <strong>Bike rack:</strong>
-  <% if @shop.bike_rack == true %>
-    有
-  <% end %>
+  <strong>サイクルラック:</strong>
+  <%= @shop.bike_rack == true ? "有" : "無" %>
 </p>
 
 <p>
-  <strong>Remarks:</strong>
+  <strong>備考:</strong>
   <%= @shop.remarks %>
 </p>
 
+<p>
+  <strong>地図:</strong>
+  XXXX
+</p>
+
 <% if current_user.admin? %>
-  <%= link_to 'Edit', edit_shop_path(@shop) %><br />
+  <%= link_to '編集', edit_shop_path(@shop) %><br />
 <% end %>
-<%= link_to 'Back', shops_path %>
+<%= link_to '戻る', shops_path %>

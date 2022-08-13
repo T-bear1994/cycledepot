@@ -20,31 +20,16 @@
 <% end %>
 
 <h2>ショップリスト</h2>
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th>Cashless</th>
-      <th>Bike rack</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @shops.each do |shop| %>
-      <tr onclick="location.href='<%= shop_path(shop.id) %>'">
-        <td><%= shop.name %></td>
-        <td><%= shop.prefecture %></td>
-        <td><%= shop.city %></td>
-        <td><%= shop.cashless %></td>
-        <td><%= shop.bike_rack %></td>
-        <td><%= shop.favorites.count %></td>
-        <td><%= shop.saved_shops.count %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<div class="shop-list">
+  <% @shops.each do |shop| %>
+    <div class="shop-item" onclick="location.href='<%= shop_path(shop.id) %>'">
+      <%= shop.name %>
+      <%= shop.prefecture %>
+      <%= shop.city %>
+      キャッシュレス: <%= shop.cashless == true ? "対応" : "非対応" %>
+      サイクルラック: <%= shop.bike_rack == true ? "有" : "無" %>
+      <%= shop.favorites.count %>
+      <%= shop.saved_shops.count %>
+    </div>
+  <% end %>
+</div>
