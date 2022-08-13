@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :genres
   resources :shops do
     resource :favorites, only: [:create, :destroy]
+    resource :saved_shops, only: [:create, :destroy]
   end
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

@@ -1,0 +1,2 @@
+module SavedShopsHelper
+end

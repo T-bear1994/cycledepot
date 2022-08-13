@@ -33,6 +33,9 @@
       <div id="favorite-<%= shop.id %>">
         <%= render partial: "favorite", remote: true, locals: { shop: shop } %>
       </div>
+      <div id="saved-shop-<%= shop.id %>">
+        <%= render partial: "saved_shop", remote: true, locals: { shop: shop } %>
+      </div>
     <% end %>
   <% end %>
 </div>
