@@ -28,8 +28,11 @@
       <%= shop.city %>
       キャッシュレス: <%= shop.cashless == true ? "対応" : "非対応" %>
       サイクルラック: <%= shop.bike_rack == true ? "有" : "無" %>
-      <%= shop.favorites.count %>
-      <%= shop.saved_shops.count %>
     </div>
+    <% if current_user %>
+      <div class="favorite-<%= shop.id %>">
+        <%= render partial: "favorite", remote: true, locals: { shop: shop } %>
+      </div>
+    <% end %>
   <% end %>
 </div>
