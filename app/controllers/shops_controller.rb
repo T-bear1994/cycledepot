@@ -6,7 +6,7 @@ class ShopsController < ApplicationController
   def index
     @genres = Genre.all
     @q = Shop.ransack(params[:q])
-    @shops = @q.result(distinct: true)
+    @shops = @q.result(distinct: true).order(:id).page(params[:page])
   end
 
   # GET /shops/1 or /shops/1.json

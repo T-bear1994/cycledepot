@@ -3,11 +3,12 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
 
   def index
-    @users = User.all
+    @users = User.all.page(params[:page])
   end
 
   def show
     @user = User.find(params[:id])
+    @saved_shops = @user.shops.page(params[:page])
   end
 
   def edit
