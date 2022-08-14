@@ -8,3 +8,5 @@
     <%= link_to "削除", user, data: { confirm: "#{user.name}を削除してもよろしいですか？" }, method: :delete %></p>
   </div>
 <% end %>
+
+<%= paginate @users %>
