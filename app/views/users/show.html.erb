@@ -15,18 +15,22 @@
 </p>
 
 <h2>保存したショップ</h2>
-<% @user.saved_shops.each do |saved| %>
-  <% shop = Shop.find(saved.shop_id) %>
+<% @saved_shops.each do |shop| %>
   <div onclick="location.href='<%= shop_path(shop.id) %>'" >
     <%= shop.name %>
     <%= shop.prefecture %>
     <%= shop.city %>
     <%= shop.cashless %>
     <%= shop.bike_rack %>
-    <%= shop.favorites.count %>
-    <%= shop.saved_shops.count %>
+  </div>
+  <div id="favorite-<%= shop.id %>">
+    <%= render partial: "./shops/favorite", remote: true, locals: { shop: shop } %>
+  </div>
+  <div id="saved-shop-<%= shop.id %>">
+    <%= render partial: "./shops/saved_shop", remote: true, locals: { shop: shop } %>
   </div>
 <% end %>
+<%= paginate @saved_shops %>
 
 <h2>最近閲覧したショップ</h2>
 <% @user.browsing_histories.each do |browsing_history| %>
@@ -37,7 +41,11 @@
     <%= shop.city %>
     <%= shop.cashless %>
     <%= shop.bike_rack %>
-    <%= shop.favorites.count %>
-    <%= shop.saved_shops.count %>
+  </div>
+  <div id="favorite-<%= shop.id %>">
+    <%= render partial: "./shops/favorite", remote: true, locals: { shop: shop } %>
+  </div>
+  <div id="saved-shop-<%= shop.id %>">
+    <%= render partial: "./shops/saved_shop", remote: true, locals: { shop: shop } %>
   </div>
 <% end %>
