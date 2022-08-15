@@ -4,6 +4,12 @@
   <% @shop.genres.each do |genre| %>
     <%= genre.name %>
   <% end %>
+  <div id="favorite-<%= @shop.id %>">
+    <%= render partial: "./shops/favorite", remote: true, locals: { shop: @shop } %>
+  </div>
+  <div id="saved-shop-<%= @shop.id %>">
+    <%= render partial: "./shops/saved_shop", remote: true, locals: { shop: @shop } %>
+  </div>
 </p>
 
 <p>
