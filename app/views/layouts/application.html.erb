@@ -6,25 +6,40 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="container has-navbar-fixed-top">
     <header class="header">
-      <h1><%= link_to image_tag("logo.png", class:"header-logo"), shops_path %></h1>
-      <nav>
-        <% if user_signed_in? && current_user.admin == false %>
-          <%= link_to "マイページ", user_path(current_user.id) %>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        <% elsif user_signed_in? == false %>
-          <%= link_to "ログイン", new_user_session_path %>
-        <% else %>
-          <%= link_to "マイページ", user_path(current_user.id) %>
-          <%= link_to "ユーザー一覧", users_path %>
-          <%= link_to "ジャンル一覧", genres_path %>
-          <%= link_to "ショップ登録", new_shop_path %>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        <% end %>
+      <nav class="navbar is-fixed-top container" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <%= link_to image_tag("logo.png", class:"navbar-item image is-64x64"), shops_path %>
+
+          <a role="button" class="navbar-burger my-auto" aria-label="menu" aria-expanded="false"  data-target="navMenu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div class="navbar-menu" id="navMenu">
+          <div class="navbar-end">
+            <% if user_signed_in? && current_user.admin == false %>
+              <%= link_to "マイページ", user_path(current_user.id), class: "navbar-item has-text-centered" %>
+              <%= link_to "ログアウト", destroy_user_session_path, class: "navbar-item has-text-centered", method: :delete %>
+            <% elsif user_signed_in? == false %>
+              <%= link_to "ログイン", new_user_session_path, class: "navbar-item has-text-centered" %>
+              <%= link_to "ユーザー登録", new_user_registration_path, class: "navbar-item has-text-centered" %>
+            <% else %>
+              <%= link_to "マイページ", user_path(current_user.id), class: "navbar-item has-text-centered" %>
+              <%= link_to "ユーザー一覧", users_path, class: "navbar-item has-text-centered" %>
+              <%= link_to "ジャンル一覧", genres_path, class: "navbar-item has-text-centered" %>
+              <%= link_to "ショップ登録", new_shop_path, class: "navbar-item has-text-centered" %>
+              <%= link_to "ログアウト", destroy_user_session_path, class: "navbar-item has-text-centered", method: :delete %>
+            <% end %>
+          </div>
+        </div>
       </nav>
     </header>
     <p class="notice"><%= notice %></p>
