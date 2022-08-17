@@ -1,42 +1,68 @@
-<h1>Cycle Depot</h1>
-<p>Database for cyclist friendly shops</p>
-<img src="#">
-<p>ライド中のお店探しは<br><span>サイクルデポ</span></p>
+<div class="has-background-white has-text-centered">
+  <h1 class="has-text-weight-bold mb-0 mt-0 is-size-2">Cycle Depot</h1>
+  <p class="is-size-4">Database for cyclist friendly shops</p>
+</div>
+<div class="has-text-centered columns is-vcentered mt-0">
+  <%= image_tag "smartphone.png", class: "is-6 column pr-0 image" %>
+  <p class="is-6 column pl-0 has-text-white has-text-weight-bold is-size-4">ライド中のお店探しなら<br>
+  <span class="is-size-2">Cycle Depot!!</span></p>
+</div>
 
-<h2>ショップ検索</h2>
-<%= search_form_for @q do |f| %>
-  <%= f.label :name, "店名" %>
-  <%= f.search_field :name_cont %>
-  <%= f.label :prefecture, "都道府県" %>
-  <%= f.select :prefecture_eq_any, Shop.prefectures.to_a, { include_blank: "指定なし" } %>
-  <%= f.label :genres_name, "ジャンル" %>
-  <%= f.collection_select :genres_id_eq, @genres, :id, :name, { include_blank: "指定なし" } %>
-  <%= f.label :cashless, "キャッシュレス" %>
-  <%= f.check_box :cashless_true, {}, checked_value = "true", unchecked_value= "" %>
-  <%= f.label :bile_rack, "サイクルラック" %>
-  <%= f.check_box :bike_rack_true, {}, ckecked_value = "true", unchecked_value = "" %>
-  <br />
-  <%= f.submit "検索" %>
-<% end %>
-
-<h2>ショップリスト</h2>
-<div class="shop-list">
-  <% @shops.each do |shop| %>
-    <div class="shop-item" onclick="location.href='<%= shop_path(shop.id) %>'">
-      <%= shop.name %>
-      <%= shop.prefecture %>
-      <%= shop.city %>
-      キャッシュレス: <%= shop.cashless == true ? "対応" : "非対応" %>
-      サイクルラック: <%= shop.bike_rack == true ? "有" : "無" %>
+<h2 class="is-underlined has-text-white has-text-weight-bold has-text-centered is-size-3">ショップ検索</h2>
+<div class="columns">
+  <%= search_form_for @q, html: {class: "container has-background-white column is-10 mt-4 box box-radius is-normal"} do |f| %>
+    <div class="columns mx-3 my-1 is-vcentered">
+      <%= f.label :name, "店名", class: "label column is-2 mb-0 py-0" %>
+      <%= f.search_field :name_cont, class: "input box box-radius column is-10" %>
     </div>
-    <% if current_user %>
-      <div id="favorite-<%= shop.id %>">
-        <%= render partial: "favorite", remote: true, locals: { shop: shop } %>
-      </div>
-      <div id="saved-shop-<%= shop.id %>">
-        <%= render partial: "saved_shop", remote: true, locals: { shop: shop } %>
+    <div class="columns mx-3 my-1 is-vcentered select is-normal">
+      <%= f.label :prefecture, "都道府県", class: "label column is-2 mb-0 py-0" %>
+      <%= f.select :prefecture_eq_any, Shop.prefectures.to_a, { include_blank: "指定なし" }, class: "select is-10 is-fullwidth" %>
+    </div>
+    <div class="columns mx-3 is-vcentered select my-1">
+      <%= f.label :genres_name, "ジャンル", class: "label column is-2 mb-0 py-0" %>
+      <%= f.collection_select :genres_id_eq, @genres, :id, :name, { include_blank: "指定なし" }, class: "select is-10 is-fullwidth" %><br />
+    </div>
+    <div class="columns mx-3 is-vcentered my-3 checkbox">
+      <%= f.label :cashless, "キャッシュレス", class: "label column is-2 mb-0 py-0" %>
+      <%= f.check_box :cashless_true, {class:"checkbox"}, checked_value = "true", unchecked_value= "" %>
+    </div>
+    <div class="columns mx-3 is-vcentered my-3 checkbox">
+      <%= f.label :bile_rack, "サイクルラック", class: "label", class: "label column is-2 mb-0 py-0" %>
+      <%= f.check_box :bike_rack_true, {class:"checkbox"}, ckecked_value = "true", unchecked_value = "" %>
+    </div>
+    <br />
+    <%= f.submit "検索", class: "button is-rounded is-fullwidth is-link" %>
+  <% end %>
+</div>
+
+<h2 class="is-underlined has-text-white has-text-weight-bold has-text-centered is-size-3">ショップリスト</h2>
+<div class="columns is-centered">
+  <div class="shop-list container has-background-white column is-10 mt-4 box box-radius mb-5 columns is-centered is-flex-wrap-wrap">
+    <% @shops.each do |shop| %>
+      <div class="card column is-half my-1 p-0">
+        <div class="shop-info card-content py-0" onclick="location.href='<%= shop_path(shop.id) %>'" style=":hover cursor: pointer;">
+          <p class="is-size-6 has-text-weight-bold"><%= shop.name %></p>
+          <%= shop.prefecture %>
+          <%= shop.city %>
+          <% shop.genres.each do |genre| %>
+            <%= genre.name %>
+          <% end %>
+          <br />
+          サイクルラック: <%= shop.bike_rack == true ? "有" : "無" %>
+        </div>
+        <footer class="card-footer">
+          <% if current_user %>
+            <div id="favorite-<%= shop.id %>" class="card-footer-item py-1">
+              <%= render partial: "favorite", remote: true, locals: { shop: shop } %>
+            </div>
+            <div id="saved-shop-<%= shop.id %>" class="card-footer-item py-1">
+              <%= render partial: "saved_shop", remote: true, locals: { shop: shop } %>
+            </div>
+          <% end %>
+        </footer>
       </div>
     <% end %>
-  <% end %>
-  <%= paginate @shops %>
+    <%= paginate @shops %>
+  </div>
 </div>
