@@ -1,68 +1,80 @@
-<div class="has-background-white has-text-centered">
-  <h1 class="has-text-weight-bold mb-0 mt-0 is-size-2">Cycle Depot</h1>
-  <p class="is-size-4">Database for cyclist friendly shops</p>
-</div>
-<div class="has-text-centered columns is-vcentered mt-0">
-  <%= image_tag "smartphone.png", class: "is-6 column pr-0 image" %>
-  <p class="is-6 column pl-0 has-text-white has-text-weight-bold is-size-4">ライド中のお店探しなら<br>
+<section class="hero is-small has-background-white">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="has-text-weight-bold title">Cycle Depot</h1>
+      <p class="subtitle">Database for cyclist friendly shops</p>
+    </div>
+  </div>
+</section>
+
+<div class="columns is-vcentered mt-0">
+  <%= image_tag "smartphone.png", class: "is-6 column image " %>
+  <p class="is-6 column has-text-white has-text-weight-bold has-text-centered">ライド中のお店探しなら<br>
   <span class="is-size-2">Cycle Depot!!</span></p>
 </div>
 
 <h2 class="is-underlined has-text-white has-text-weight-bold has-text-centered is-size-3">ショップ検索</h2>
-<div class="columns">
-  <%= search_form_for @q, html: {class: "container has-background-white column is-10 mt-4 box box-radius is-normal"} do |f| %>
-    <div class="columns mx-3 my-1 is-vcentered">
-      <%= f.label :name, "店名", class: "label column is-2 mb-0 py-0" %>
-      <%= f.search_field :name_cont, class: "input box box-radius column is-10" %>
-    </div>
-    <div class="columns mx-3 my-1 is-vcentered select is-normal">
-      <%= f.label :prefecture, "都道府県", class: "label column is-2 mb-0 py-0" %>
-      <%= f.select :prefecture_eq_any, Shop.prefectures.to_a, { include_blank: "指定なし" }, class: "select is-10 is-fullwidth" %>
-    </div>
-    <div class="columns mx-3 is-vcentered select my-1">
-      <%= f.label :genres_name, "ジャンル", class: "label column is-2 mb-0 py-0" %>
-      <%= f.collection_select :genres_id_eq, @genres, :id, :name, { include_blank: "指定なし" }, class: "select is-10 is-fullwidth" %><br />
-    </div>
-    <div class="columns mx-3 is-vcentered my-3 checkbox">
-      <%= f.label :cashless, "キャッシュレス", class: "label column is-2 mb-0 py-0" %>
-      <%= f.check_box :cashless_true, {class:"checkbox"}, checked_value = "true", unchecked_value= "" %>
-    </div>
-    <div class="columns mx-3 is-vcentered my-3 checkbox">
-      <%= f.label :bile_rack, "サイクルラック", class: "label", class: "label column is-2 mb-0 py-0" %>
-      <%= f.check_box :bike_rack_true, {class:"checkbox"}, ckecked_value = "true", unchecked_value = "" %>
-    </div>
-    <br />
-    <%= f.submit "検索", class: "button is-rounded is-fullwidth is-link" %>
-  <% end %>
-</div>
+<%= search_form_for @q, html: {class: "container has-background-white column is-10 mt-4 box box-radius is-normal"} do |f| %>
+  <div class="columns mx-3 my-1 is-vcentered">
+    <%= f.label :name, "店名", class: "label column is-2 mb-0 " %>
+    <%= f.search_field :name_cont, class: "input column is-10" %>
+  </div>
+  <div class="columns mx-3 my-1 is-vcentered select">
+    <%= f.label :prefecture, "都道府県", class: "label column is-2 mb-0" %>
+    <%= f.select :prefecture_eq_any, Shop.prefectures.to_a, { include_blank: "指定なし" }, class: "column is-10 is-fullwidth" %>
+  </div>
+  <div class="columns mx-3 my-1 is-vcentered select">
+    <%= f.label :genres_name, "ジャンル", class: "label column is-2 mb-0" %>
+    <%= f.collection_select :genres_id_eq, @genres, :id, :name, { include_blank: "指定なし" }, class: "column is-10 is-fullwidth" %><br />
+  </div>
+  <div class="columns mx-3 my-1 is-vcentered checkbox">
+    <%= f.label :cashless, "キャッシュレス", class: "label column is-2 mb-0" %>
+    <%= f.check_box :cashless_true, {class:"checkbox"}, checked_value = "true", unchecked_value= "" %>
+  </div>
+  <div class="columns mx-3 my-1 is-vcentered checkbox">
+    <%= f.label :bile_rack, "サイクルラック", class: "label", class: "label column is-2 mb-0 py-0" %>
+    <%= f.check_box :bike_rack_true, {class:"checkbox"}, ckecked_value = "true", unchecked_value = "" %>
+  </div>
+  <br />
+  <%= f.submit "検索", class: "button is-rounded is-fullwidth is-link" %>
+<% end %>
 
 <h2 class="is-underlined has-text-white has-text-weight-bold has-text-centered is-size-3">ショップリスト</h2>
-<div class="columns is-centered">
-  <div class="shop-list container has-background-white column is-10 mt-4 box box-radius mb-5 columns is-centered is-flex-wrap-wrap">
+<section class="container">
+  <div class="columns is-multiline is-centered">
     <% @shops.each do |shop| %>
-      <div class="card column is-half my-1 p-0">
-        <div class="shop-info card-content py-0" onclick="location.href='<%= shop_path(shop.id) %>'" style=":hover cursor: pointer;">
-          <p class="is-size-6 has-text-weight-bold"><%= shop.name %></p>
-          <%= shop.prefecture %>
-          <%= shop.city %>
-          <% shop.genres.each do |genre| %>
-            <%= genre.name %>
-          <% end %>
-          <br />
-          サイクルラック: <%= shop.bike_rack == true ? "有" : "無" %>
+      <div class="column is-5" >
+        <div class="card is-shady">
+          <div class="card-content pb-1">
+            <div class="media" onclick="location.href='<%= shop_path(shop.id) %>'" style=":hover cursor: pointer;" >
+              <div class="media-content">
+                <p class="title is-4"><%= shop.name %></p>
+                <p class="subtitle is-6"><%= shop.prefecture %><%= shop.city %></p>
+                <p class="subtitle is-6">
+                  <% shop.genres.each do |genre| %>
+                    <%= genre.name %>
+                  <% end %>
+                </p>
+              </div>
+            </div>
+
+            <div class="content">
+              サイクルラック: <%= shop.bike_rack == true ? "有" : "無" %>
+            </div>
+            <footer class="card-footer is-vcentered">
+              <% if current_user %>
+                <div id="favorite-<%= shop.id %>" class="card-footer-item py-1">
+                  <%= render partial: "favorite", remote: true, locals: { shop: shop } %>
+                </div>
+                <div id="saved-shop-<%= shop.id %>" class="card-footer-item py-1">
+                  <%= render partial: "saved_shop", remote: true, locals: { shop: shop } %>
+                </div>
+              <% end %>
+            </footer>
+          </div>
         </div>
-        <footer class="card-footer">
-          <% if current_user %>
-            <div id="favorite-<%= shop.id %>" class="card-footer-item py-1">
-              <%= render partial: "favorite", remote: true, locals: { shop: shop } %>
-            </div>
-            <div id="saved-shop-<%= shop.id %>" class="card-footer-item py-1">
-              <%= render partial: "saved_shop", remote: true, locals: { shop: shop } %>
-            </div>
-          <% end %>
-        </footer>
       </div>
     <% end %>
-    <%= paginate @shops %>
   </div>
-</div>
+  <%= paginate @shops %>
+</section>
