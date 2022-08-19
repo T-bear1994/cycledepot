@@ -49,8 +49,7 @@
             <div class="media" onclick="location.href='<%= shop_path(shop.id) %>'" style=":hover cursor: pointer;" >
               <div class="media-content">
                 <p class="title is-4"><%= shop.name %></p>
-                <p class="subtitle is-6"><%= shop.prefecture %><%= shop.city %></p>
-                <p class="subtitle is-6">
+                <p class="subtitle is-6"><%= shop.prefecture %><%= shop.city %>
                   <% shop.genres.each do |genre| %>
                     <%= genre.name %>
                   <% end %>
