@@ -45,8 +45,8 @@
     <% @shops.each do |shop| %>
       <div class="column is-5" >
         <div class="card is-shady">
-          <div class="card-content pb-1">
-            <div class="media" onclick="location.href='<%= shop_path(shop.id) %>'" style=":hover cursor: pointer;" >
+          <div class="card-content pb-1"  onclick="location.href='<%= shop_path(shop.id) %>'" style=":hover cursor: pointer;">
+            <div class="media">
               <div class="media-content">
                 <p class="title is-4"><%= shop.name %></p>
                 <p class="subtitle is-6"><%= shop.prefecture %><%= shop.city %>
