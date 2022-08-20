@@ -2,7 +2,7 @@
 <%= form_with(model: shop, local: true, html: {class: "container has-background-white column is-10 mt-4 box box-radius"}) do |form| %>
   <% if shop.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(shop.errors.count, "error") %> prohibited this shop from being saved:</h2>
+      <h2><%= pluralize(shop.errors.count, "") %>件のエラーが検出されました。:</h2>
 
       <ul>
         <% shop.errors.full_messages.each do |message| %>
@@ -63,6 +63,10 @@
   </div>
   <br />
   <div class="actions">
-    <%= form.submit(class: "button is-rounded is-fullwidth is-link") %>
+    <%  if @shop.persisted? %>
+      <%= form.submit t("attributes.update"), class: "button is-rounded is-fullwidth is-link" %>
+    <% else %>
+      <%= form.submit t("attributes.create"), class: "button is-rounded is-fullwidth is-link" %>
+    <% end %>
   </div>
 <% end %>

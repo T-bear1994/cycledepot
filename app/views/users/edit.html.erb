@@ -1,5 +1,7 @@
 
 <%= form_with(model: @user, local: true, html: { class: "container has-background-white column is-10 mt-4 box box-radius" }) do |f| %>
+
+
   <div class="field columns is-vcentered m-0">
     <%= f.label :name, class: "label column is-2 mb-0" %>
     <%= f.text_field :name, class: "input column is-10 is-fullwidth", autofocus: true, autocomplete: "name" %>
@@ -21,7 +23,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit(class: "button is-rounded is-fullwidth is-link") %>
+    <%= f.submit t("attributes.update"), class: "button is-rounded is-fullwidth is-link" %>
   </div>
 <% end %>
 

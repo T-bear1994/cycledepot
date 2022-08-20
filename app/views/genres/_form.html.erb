@@ -1,7 +1,7 @@
 <%= form_with(model: genre, local: true, html: {class: "container has-background-white column is-10 mt-4 box box-radius"}) do |form| %>
   <% if genre.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(genre.errors.count, "error") %> prohibited this genre from being saved:</h2>
+      <h2><%= pluralize(genre.errors.count, "") %>件のエラーが検出されました。:</h2>
 
       <ul>
         <% genre.errors.full_messages.each do |message| %>
@@ -17,6 +17,10 @@
   </div>
 
   <div class="actions">
-    <%= form.submit(class: "button is-rounded is-fullwidth is-link") %>
+    <%  if @genre.persisted? %>
+      <%= form.submit t("attributes.update"), class: "button is-rounded is-fullwidth is-link" %>
+    <% else %>
+      <%= form.submit t("attributes.create"), class: "button is-rounded is-fullwidth is-link" %>
+    <% end %>
   </div>
 <% end %>
