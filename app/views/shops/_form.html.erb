@@ -61,6 +61,11 @@
     <%= form.label :remarks, class: "label column is-2 mb-0" %>
     <%= form.text_area :remarks, class: "input column is-10" %>
   </div>
+
+  <div class="filed columns is-vcentered m-0">
+    <%= form.label :genre, class: "label column is-2 mb-0" %>
+    <%= form.collection_check_boxes(:genre_ids, Genre.all, :id, :name, class: "checkbox is-10") %>
+  </div>
   <br />
   <div class="actions">
     <%  if @shop.persisted? %>

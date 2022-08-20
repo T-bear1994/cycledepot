@@ -32,7 +32,7 @@ class ShopsController < ApplicationController
 
     respond_to do |format|
       if @shop.save
-        format.html { redirect_to shop_url(@shop), notice: "Shop was successfully created." }
+        format.html { redirect_to shop_url(@shop), notice: "ショップが登録されました。" }
         format.json { render :show, status: :created, location: @shop }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -45,7 +45,7 @@ class ShopsController < ApplicationController
   def update
     respond_to do |format|
       if @shop.update(shop_params)
-        format.html { redirect_to shop_url(@shop), notice: "Shop was successfully updated." }
+        format.html { redirect_to shop_url(@shop), notice: "ショップ情報が更新されました。" }
         format.json { render :show, status: :ok, location: @shop }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -59,7 +59,7 @@ class ShopsController < ApplicationController
     @shop.destroy
 
     respond_to do |format|
-      format.html { redirect_to shops_url, notice: "Shop was successfully destroyed." }
+      format.html { redirect_to shops_url, notice: "ショップ情報が削除されました。" }
       format.json { head :no_content }
     end
   end
@@ -72,7 +72,11 @@ class ShopsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def shop_params
-      params.require(:shop).permit(:name, :prefecture, :city, :address, :latitude, :longitude, :business_hour, :cashless, :bike_rack, :remarks)
+      params.require(:shop).permit(
+        :name, :prefecture, :city,
+        :address, :latitude, :longitude,
+        :business_hour, :cashless, :bike_rack,
+        :remarks, { genre_ids: []})
     end
 
     def add_browsing_histories
