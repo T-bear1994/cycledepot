@@ -5,11 +5,11 @@
       <%= genre.name %>
     <% end %>
   </p>
-  <div class="columns is-centered mt-2">
-    <div id="favorite-<%= @shop.id %> column">
+  <div class="columns is-centered has-text-centered my-0">
+    <div id="favorite-<%= @shop.id %>" class="column p-0 is-3 is-size-5">
       <%= render partial: "./shops/favorite", remote: true, locals: { shop: @shop } %>
     </div>
-    <div id="saved-shop-<%= @shop.id %> column">
+    <div id="saved-shop-<%= @shop.id %>" class="column p-0 is-3 is-size-5">
       <%= render partial: "./shops/saved_shop", remote: true, locals: { shop: @shop } %>
     </div>
   </div>
