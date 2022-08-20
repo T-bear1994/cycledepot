@@ -1,6 +1,9 @@
-<h1>404</h1>
-<p>ページが見つかりません</p>
+<div class="container has-background-white column is-10 mt-4 box box-radius">
+  <h1 class="title has-text-centered">404 Not Found</h1>
+  <p class="has-text-centered">申し訳ございません。指定されたページが見つかりませんでした。</p>
+  <%= image_tag "sorry.png", class: "image mx-auto is-128x128" %>
+</div>
 
-<%# 画像 %>
-
-<%# トップページへのリンク %>
+<div class="has-text-centered container column is-8">
+  <%= link_to "ホーム画面へ", root_path, class: "button is-link is-rounded is-fullwidth" %>
+</div>
