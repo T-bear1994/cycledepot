@@ -1,14 +1,10 @@
 class GenresController < ApplicationController
-  before_action :set_genre, only: %i[ show edit update destroy ]
+  before_action :set_genre, only: %i[ edit update destroy ]
   before_action :only_admin
 
   # GET /genres or /genres.json
   def index
     @genres = Genre.all.page(params[:page])
-  end
-
-  # GET /genres/1 or /genres/1.json
-  def show
   end
 
   # GET /genres/new
@@ -26,8 +22,8 @@ class GenresController < ApplicationController
 
     respond_to do |format|
       if @genre.save
-        format.html { redirect_to genre_url(@genre), notice: "ジャンルが作成されました。" }
-        format.json { render :show, status: :created, location: @genre }
+        format.html { redirect_to genres_path, notice: "ジャンルが作成されました。" }
+        format.json { render :index, status: :created, location: @genre }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @genre.errors, status: :unprocessable_entity }
