@@ -1,51 +1,103 @@
-<h1>My page</h1>
+<section class="hero is-small has-background-white">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="has-text-weight-bold title">マイページ</h1>
+    </div>
+  </div>
+</section>
 
-<h2>登録情報</h2>
-<p>
-  <strong>ユーザーネーム:</strong>
-  <%= @user.name %>
-</p>
-<p>
-  <strong>メールアドレス:</strong>
-  <%= @user.email %>
-</p>
+<h2 class="is-underlined has-text-white has-text-weight-bold has-text-centered is-size-3">登録情報</h2>
+<div class="container has-background-white column is-10 mt-4 box box-radius">
+  <p class="columns has-text-centered">
+    <span class="column is-2"><strong>ユーザーネーム</strong></span>
+    <span class="column is-10"><%= @user.name %></span>
+  </p>
+  <p class="columns has-text-centered">
+    <span class="column is-2"><strong>メールアドレス</strong></span>
+    <span class="column is-10"><%= @user.email %></span>
+  </p>
+  <%= link_to "編集",  edit_user_registration_path, class: "button is-rounded is-fullwidth is-link" %>
+</div>
 
-<p>
-  <%= link_to "編集",  edit_user_registration_path %>
-</p>
+<h2 class="is-underlined has-text-white has-text-weight-bold has-text-centered is-size-3">保存したショップ</h2>
+<section class="container">
+  <div class="columns is-multiline is-centered">
+    <% @saved_shops.each do |shop| %>
+      <% shop = Shop.find(shop.id) %>
+      <div class="column is-5" >
+        <div class="card is-shady">
+          <div class="card-content pb-1">
+            <div class="clickable" onclick="location.href='<%= shop_path(shop.id) %>'" style=":hover cursor: pointer;">
+              <div class="media">
+                <div class="media-content">
+                  <p class="title is-4"><%= shop.name %></p>
+                  <p class="subtitle is-6"><%= shop.prefecture %><%= shop.city %>
+                    <% shop.genres.each do |genre| %>
+                      <%= genre.name %>
+                    <% end %>
+                  </p>
+                </div>
+              </div>
 
-<h2>保存したショップ</h2>
-<% @saved_shops.each do |shop| %>
-  <div onclick="location.href='<%= shop_path(shop.id) %>'" >
-    <%= shop.name %>
-    <%= shop.prefecture %>
-    <%= shop.city %>
-    <%= shop.cashless %>
-    <%= shop.bike_rack %>
+              <div class="content">
+                サイクルラック: <%= shop.bike_rack == true ? "有" : "無" %>
+              </div>
+            </div>
+            <footer class="card-footer is-vcentered">
+              <% if current_user %>
+                <div id="favorite-<%= shop.id %>" class="card-footer-item py-1">
+                  <%= render partial: "shops/favorite", remote: true, locals: { shop: shop } %>
+                </div>
+                <div id="saved-shop-<%= shop.id %>" class="card-footer-item py-1">
+                  <%= render partial: "shops/saved_shop", remote: true, locals: { shop: shop } %>
+                </div>
+              <% end %>
+            </footer>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= paginate @saved_shops %>
   </div>
-  <div id="favorite-<%= shop.id %>">
-    <%= render partial: "./shops/favorite", remote: true, locals: { shop: shop } %>
-  </div>
-  <div id="saved-shop-<%= shop.id %>">
-    <%= render partial: "./shops/saved_shop", remote: true, locals: { shop: shop } %>
-  </div>
-<% end %>
-<%= paginate @saved_shops %>
+</section>
 
-<h2>最近閲覧したショップ</h2>
-<% @user.browsing_histories.each do |browsing_history| %>
-  <% shop = Shop.find(browsing_history.shop_id) %>
-  <div onclick="location.href='<%= shop_path(shop.id) %>'" >
-    <%= shop.name %>
-    <%= shop.prefecture %>
-    <%= shop.city %>
-    <%= shop.cashless %>
-    <%= shop.bike_rack %>
+<h2 class="is-underlined has-text-white has-text-weight-bold has-text-centered is-size-3">最近閲覧したショップ</h2>
+<section class="container">
+  <div class="columns is-multiline is-centered">
+    <% @user.browsing_histories.each do |browsing_history| %>
+      <% shop = Shop.find(browsing_history.shop_id) %>
+      <div class="column is-5" >
+        <div class="card is-shady">
+          <div class="card-content pb-1">
+            <div class="clickable" onclick="location.href='<%= shop_path(shop.id) %>'" style=":hover cursor: pointer;">
+              <div class="media">
+                <div class="media-content">
+                  <p class="title is-4"><%= shop.name %></p>
+                  <p class="subtitle is-6"><%= shop.prefecture %><%= shop.city %>
+                    <% shop.genres.each do |genre| %>
+                      <%= genre.name %>
+                    <% end %>
+                  </p>
+                </div>
+              </div>
+
+              <div class="content">
+                サイクルラック: <%= shop.bike_rack == true ? "有" : "無" %>
+              </div>
+            </div>
+            <footer class="card-footer is-vcentered">
+              <% if current_user %>
+                <div id="favorite-<%= shop.id %>" class="card-footer-item py-1">
+                  <%= render partial: "shops/favorite", remote: true, locals: { shop: shop } %>
+                </div>
+                <div id="saved-shop-<%= shop.id %>" class="card-footer-item py-1">
+                  <%= render partial: "shops/saved_shop", remote: true, locals: { shop: shop } %>
+                </div>
+              <% end %>
+            </footer>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-  <div id="favorite-<%= shop.id %>">
-    <%= render partial: "./shops/favorite", remote: true, locals: { shop: shop } %>
-  </div>
-  <div id="saved-shop-<%= shop.id %>">
-    <%= render partial: "./shops/saved_shop", remote: true, locals: { shop: shop } %>
-  </div>
-<% end %>
+</section>
