@@ -14,7 +14,7 @@
 </div>
 
 <h2 class="is-underlined has-text-white has-text-weight-bold has-text-centered is-size-3">ショップ検索</h2>
-<%= search_form_for @q, html: {class: "container has-background-white column is-10 mt-4 box box-radius is-normal"} do |f| %>
+<%= search_form_for @q, html: {class: "container has-background-white column is-10 mt-4 box box-radius"} do |f| %>
   <div class="columns mx-3 my-1 is-vcentered">
     <%= f.label :name, "店名", class: "label column is-2 mb-0 " %>
     <%= f.search_field :name_cont, class: "input column is-10" %>
@@ -45,20 +45,22 @@
     <% @shops.each do |shop| %>
       <div class="column is-5" >
         <div class="card is-shady">
-          <div class="card-content pb-1"  onclick="location.href='<%= shop_path(shop.id) %>'" style=":hover cursor: pointer;">
-            <div class="media">
-              <div class="media-content">
-                <p class="title is-4"><%= shop.name %></p>
-                <p class="subtitle is-6"><%= shop.prefecture %><%= shop.city %>
-                  <% shop.genres.each do |genre| %>
-                    <%= genre.name %>
-                  <% end %>
-                </p>
+          <div class="card-content pb-1">
+            <div class="clickable" onclick="location.href='<%= shop_path(shop.id) %>'" style=":hover cursor: pointer;">
+              <div class="media">
+                <div class="media-content">
+                  <p class="title is-4"><%= shop.name %></p>
+                  <p class="subtitle is-6"><%= shop.prefecture %><%= shop.city %>
+                    <% shop.genres.each do |genre| %>
+                      <%= genre.name %>
+                    <% end %>
+                  </p>
+                </div>
               </div>
-            </div>
 
-            <div class="content">
-              サイクルラック: <%= shop.bike_rack == true ? "有" : "無" %>
+              <div class="content">
+                サイクルラック: <%= shop.bike_rack == true ? "有" : "無" %>
+              </div>
             </div>
             <footer class="card-footer is-vcentered">
               <% if current_user %>
