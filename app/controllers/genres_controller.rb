@@ -26,7 +26,7 @@ class GenresController < ApplicationController
 
     respond_to do |format|
       if @genre.save
-        format.html { redirect_to genre_url(@genre), notice: "Genre was successfully created." }
+        format.html { redirect_to genre_url(@genre), notice: "ジャンルが作成されました。" }
         format.json { render :show, status: :created, location: @genre }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class GenresController < ApplicationController
   def update
     respond_to do |format|
       if @genre.update(genre_params)
-        format.html { redirect_to genre_url(@genre), notice: "Genre was successfully updated." }
+        format.html { redirect_to genre_url(@genre), notice: "ジャンルが更新されました。" }
         format.json { render :show, status: :ok, location: @genre }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ class GenresController < ApplicationController
     @genre.destroy
 
     respond_to do |format|
-      format.html { redirect_to genres_url, notice: "Genre was successfully destroyed." }
+      format.html { redirect_to genres_url, notice: "ジャンルが削除されました。" }
       format.json { head :no_content }
     end
   end

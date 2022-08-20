@@ -1,31 +1,30 @@
 
-<%= form_with(model: @user, local: true) do |f| %>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+<%= form_with(model: @user, local: true, html: { class: "container has-background-white column is-10 mt-4 box box-radius" }) do |f| %>
+  <div class="field columns is-vcentered m-0">
+    <%= f.label :name, class: "label column is-2 mb-0" %>
+    <%= f.text_field :name, class: "input column is-10 is-fullwidth", autofocus: true, autocomplete: "name" %>
   </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="field columns is-vcentered m-0">
+    <%= f.label :email, class: "label column is-2 mb-0" %>
+    <%= f.email_field :email, class: "input column is-10 is-fullwidth", autofocus: true, autocomplete: "email" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %></br>
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
-    <% end %>
+  <div class="field columns is-vcentered m-0">
+    <%= f.label :password, class: "label column is-2 mb-0" %>
+    <%= f.password_field :password, class: "input column is-10 is-fullwidth", autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="field columns is-vcentered m-0">
+    <%= f.label :password_confirmation, class: "label column is-2 mb-0" %>
+    <%= f.password_field :password_confirmation, class: "input column is-10 is-fullwidth", autocomplete: "new-password" %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit(class: "button is-rounded is-fullwidth is-link") %>
   </div>
 <% end %>
 
-<%= link_to '戻る', users_path %>
+<div class="has-text-centered container column is-8">
+  <%= link_to '戻る', users_path, class: "button is-link is-rounded is-fullwidth is-light" %>
+</div>

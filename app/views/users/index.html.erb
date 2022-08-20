@@ -6,13 +6,20 @@
   </div>
 </section>
 
-<% User.all.each do |user| %>
-  <div>
-    <%= user.name  %>
-    <%= "(admin)" if user.admin  %>
-    <%= link_to "編集", edit_user_path(user) %>
-    <%= link_to "削除", user, data: { confirm: "#{user.name}を削除してもよろしいですか？" }, method: :delete %></p>
-  </div>
-<% end %>
-
+<div class="container has-background-white column is-10 mt-4 box box-radius">
+  <table class="table is-fullwidth is-bordered">
+    <% User.all.each do |user| %>
+      <tbody>
+        <tr class="has-text-centered">
+          <td class="is-size-5"><%= user.name  %></td>
+          <td class="is-size-5"><%= link_to "編集", edit_user_path(user), class: "button is-rounded is-link" %></td>
+          <td class="is-size-5"><%= link_to "削除", user, data: { confirm: "#{user.name}を削除してもよろしいですか？" }, class: "button is-rounded is-danger", method: :delete %></td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+</div>
+<div class="has-text-centered container column is-8">
+  <%= link_to '戻る', root_path, class: "button is-link is-rounded is-fullwidth is-light" %>
+</div>
 <%= paginate @users %>
