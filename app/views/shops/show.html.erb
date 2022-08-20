@@ -1,54 +1,52 @@
-<p>
-  <strong>名前:</strong>
-  <%= @shop.name %><br />
-  <% @shop.genres.each do |genre| %>
-    <%= genre.name %>
+<div class="container has-background-white column is-10 mt-4 box box-radius">
+  <p class="has-text-centered">
+    <span class="has-text-weight-bold is-size-3"><%= @shop.name %></span><br />
+    <% @shop.genres.each do |genre| %>
+      <%= genre.name %>
+    <% end %>
+  </p>
+  <div class="columns is-centered mt-2">
+    <div id="favorite-<%= @shop.id %> column">
+      <%= render partial: "./shops/favorite", remote: true, locals: { shop: @shop } %>
+    </div>
+    <div id="saved-shop-<%= @shop.id %> column">
+      <%= render partial: "./shops/saved_shop", remote: true, locals: { shop: @shop } %>
+    </div>
+  </div>
+
+  <h2 class="is-size-4 mb-2 has-text-centered is-underlined">店舗情報</h2>
+  <table class="table is-fullwidth is-bordered">
+    <tbody>
+      <tr class="has-text-centered">
+        <td class="is-size-5">住所</td>
+        <td class="is-size-5"><%= "#{@shop.prefecture}#{@shop.city}#{@shop.address}" %></td>
+      </tr>
+      <tr class="has-text-centered">
+        <td class="is-size-5">営業時間</td>
+        <td class="is-size-5"><%= @shop.business_hour %></td>
+      </tr>
+      <tr class="has-text-centered">
+        <td class="is-size-5">キャッシュレス</td>
+        <td class="is-size-5"><%= @shop.cashless == true ? "対応" : "非対応" %></td>
+      </tr>
+      <tr class="has-text-centered">
+        <td class="is-size-5">サイクルラック</td>
+        <td class="is-size-5"><%= @shop.bike_rack == true ? "有" : "無" %></td>
+      </tr>
+      <tr class="has-text-centered">
+        <td class="is-size-5">備考</td>
+        <td class="is-size-5"><%= @shop.remarks %></td>
+      </tr>
+      <tr class="has-text-centered">
+        <td class="is-size-5">地図</td>
+        <td class="is-size-5">ここにGoogle APIで地図を挿入する</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="has-text-centered container column is-8">
+  <% if current_user && current_user.admin? %>
+    <%= link_to '編集', edit_shop_path(@shop), class: "button is-rounded is-link is-fullwidth" %><br />
   <% end %>
-  <div id="favorite-<%= @shop.id %>">
-    <%= render partial: "./shops/favorite", remote: true, locals: { shop: @shop } %>
-  </div>
-  <div id="saved-shop-<%= @shop.id %>">
-    <%= render partial: "./shops/saved_shop", remote: true, locals: { shop: @shop } %>
-  </div>
-</p>
-
-<p>
-  お気に入り数:<%= @shop.favorites.count %></td>
-  保存数:<%= @shop.saved_shops.count %></td>
-</p>
-
-<p><em>ショップ情報</em></p>
-<p>
-  <strong>所在地:</strong>
-  <%= "#{@shop.prefecture}#{@shop.city}#{@shop.address}" %>
-</p>
-
-<p>
-  <strong>営業時間:</strong>
-  <%= @shop.business_hour %>
-</p>
-
-<p>
-  <strong>キャッシュレス:</strong>
-  <%= @shop.cashless == true ? "対応" : "非対応" %>
-</p>
-
-<p>
-  <strong>サイクルラック:</strong>
-  <%= @shop.bike_rack == true ? "有" : "無" %>
-</p>
-
-<p>
-  <strong>備考:</strong>
-  <%= @shop.remarks %>
-</p>
-
-<p>
-  <strong>地図:</strong>
-  XXXX
-</p>
-
-<% if current_user && current_user.admin? %>
-  <%= link_to '編集', edit_shop_path(@shop) %><br />
-<% end %>
-<%= link_to '戻る', shops_path %>
+  <%= link_to '戻る', shops_path, class: "button is-rounded is-link is-light is-fullwidth" %>
+</div>
