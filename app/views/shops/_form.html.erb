@@ -1,4 +1,5 @@
-<%= form_with(model: shop, local: true) do |form| %>
+<h2 class="is-underlined has-text-white has-text-weight-bold has-text-centered is-size-3">ショップ情報</h2>
+<%= form_with(model: shop, local: true, html: {class: "container has-background-white column is-10 mt-4 box box-radius"}) do |form| %>
   <% if shop.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(shop.errors.count, "error") %> prohibited this shop from being saved:</h2>
@@ -11,57 +12,57 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="field columns is-vcentered m-0">
+    <%= form.label :name, class: "label column is-2 mb-0" %>
+    <%= form.text_field :name, class: "input column is-10 is-fullwidth" %>
   </div>
 
-  <div class="field">
-    <%= form.label :prefecture %>
-    <%= form.select :prefecture, Shop.prefectures.keys.to_a, {} %>
+  <div class="field columns is-vcentered m-0 my-1 select">
+    <%= form.label :prefecture, class: "label column is-2 mb-0" %>
+    <%= form.select :prefecture, Shop.prefectures.keys.to_a, {}, class: "column is-10 is-fullwidth" %>
   </div>
 
-  <div class="field">
-    <%= form.label :city %>
-    <%= form.text_field :city %>
+  <div class="field columns is-vcentered m-0">
+    <%= form.label :city, class: "label column is-2 mb-0" %>
+    <%= form.text_field :city, class: "input column is-10" %>
   </div>
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
+  <div class="field columns is-vcentered m-0">
+    <%= form.label :address, class: "label column is-2 mb-0" %>
+    <%= form.text_field :address, class: "input column is-10" %>
   </div>
 
-  <div class="field">
-    <%= form.label :latitude %>
-    <%= form.text_field :latitude %>
+  <div class="field columns is-vcentered m-0">
+    <%= form.label :latitude, class: "label column is-2 mb-0" %>
+    <%= form.text_field :latitude, class: "input column is-10" %>
   </div>
 
-  <div class="field">
-    <%= form.label :longitude %>
-    <%= form.text_field :longitude %>
+  <div class="field columns is-vcentered m-0">
+    <%= form.label :longitude, class: "label column is-2 mb-0" %>
+    <%= form.text_field :longitude, class: "input column is-10" %>
   </div>
 
-  <div class="field">
-    <%= form.label :business_hour %>
-    <%= form.text_area :business_hour %>
+  <div class="field columns is-vcentered m-0">
+    <%= form.label :business_hour, class: "label column is-2 mb-0" %>
+    <%= form.text_area :business_hour, class: "input column is-10" %>
   </div>
 
-  <div class="field">
-    <%= form.label :cashless %>
-    <%= form.check_box :cashless %>
+  <div class="field columns is-vcentered m-0">
+    <%= form.label :cashless, class: "label column checkbox is-2" %>
+    <%= form.check_box :cashless, class: "column is-10" %>
   </div>
 
-  <div class="field">
-    <%= form.label :bike_rack %>
-    <%= form.check_box :bike_rack %>
+  <div class="field columns is-vcentered m-0">
+    <%= form.label :bike_rack, class: "label column checkbox is-2" %>
+    <%= form.check_box :bike_rack, class: "column is-10" %>
   </div>
 
-  <div class="field">
-    <%= form.label :remarks %>
-    <%= form.text_area :remarks %>
+  <div class="field columns is-vcentered m-0">
+    <%= form.label :remarks, class: "label column is-2 mb-0" %>
+    <%= form.text_area :remarks, class: "input column is-10" %>
   </div>
-
+  <br />
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit(class: "button is-rounded is-fullwidth is-link") %>
   </div>
 <% end %>
