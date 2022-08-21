@@ -1,6 +1,11 @@
 @import "bulma";
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap');
 
+#map {
+  height: 400px;
+  width: 100%;
+}
+
 *,
 ::before,
 ::after {

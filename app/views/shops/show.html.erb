@@ -1,3 +1,23 @@
+<input type="hidden" id="latitude" value="<%= @shop.latitude %>">
+<input type="hidden" id="longitude" value="<%= @shop.longitude %>">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script>
+  function initMap() {
+    const latitude = document.getElementById('latitude').value
+    const longitude = document.getElementById('longitude').value
+    const shop = { lat: parseFloat(latitude), lng: parseFloat(longitude) };
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 13,
+      center: shop,
+    });
+    const marker = new google.maps.Marker({
+      position: shop,
+      map: map,
+    });
+  };
+  window.initMap = initMap;
+</script>
+
 <div class="container has-background-white column is-10 mt-4 box box-radius">
   <p class="has-text-centered">
     <span class="has-text-weight-bold is-size-3"><%= @shop.name %></span><br />
@@ -41,7 +61,7 @@
       </tr>
       <tr class="has-text-centered">
         <td class="is-size-5">地図</td>
-        <td class="is-size-5">ここにGoogle APIで地図を挿入する</td>
+        <td class="is-size-5"><div id="map"></div></td>
       </tr>
     </tbody>
   </table>
@@ -52,3 +72,5 @@
   <% end %>
   <%= link_to '戻る', shops_path, class: "button is-rounded is-link is-light is-fullwidth" %>
 </div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap" async defer></script>
