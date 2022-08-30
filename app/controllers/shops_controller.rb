@@ -80,14 +80,14 @@ class ShopsController < ApplicationController
     end
 
     def add_browsing_histories
-      @browsing_history = BrowsingHistory.new
-      @browsing_history.user_id = current_user.id
-      @browsing_history.shop_id = @shop.id
-      @browsing_history.save!
+        @browsing_history = BrowsingHistory.new
+        @browsing_history.user_id = current_user.id
+        @browsing_history.shop_id = @shop.id
+        @browsing_history.save!
     end
 
     def delete_browsing_histories
-      if current_user.browsing_histories.count > 3
+      if current_user.browsing_histories.count > 4
         current_user.browsing_histories.first.destroy!
       end
     end
