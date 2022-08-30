@@ -13,7 +13,7 @@ class Shop < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :saved_shops, dependent: :destroy
   has_many :browsing_histories, dependent: :destroy
-  has_many :shop_genres
+  has_many :shop_genres, dependent: :destroy
   has_many :genres, through: :shop_genres
   validates :name, length: { maximum: 255 }
   validates :prefecture, length: { maximum: 10 }

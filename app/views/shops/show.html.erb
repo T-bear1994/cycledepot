@@ -69,6 +69,7 @@
 <div class="has-text-centered container column is-8">
   <% if current_user && current_user.admin? %>
     <%= link_to '編集', edit_shop_path(@shop), class: "button is-rounded is-link is-fullwidth" %><br />
+    <%= link_to '削除', @shop, data: { confirm: "本当に削除してもよろしいですか？" }, class: "button is-rounded is-link is-fullwidth is-danger", method: :delete %><br />
   <% end %>
   <%= link_to '戻る', shops_path, class: "button is-rounded is-link is-light is-fullwidth" %>
 </div>

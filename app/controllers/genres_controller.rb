@@ -35,11 +35,9 @@ class GenresController < ApplicationController
   def update
     respond_to do |format|
       if @genre.update(genre_params)
-        format.html { redirect_to genre_url(@genre), notice: "ジャンルが更新されました。" }
-        format.json { render :show, status: :ok, location: @genre }
+        format.html { redirect_to genres_path, notice: "ジャンルが更新されました。" }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @genre.errors, status: :unprocessable_entity }
       end
     end
   end

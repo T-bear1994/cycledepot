@@ -22,10 +22,12 @@
     <%= f.password_field :password_confirmation, class: "input column is-10 is-fullwidth", autocomplete: "new-password" %>
   </div>
 
+  <% if current_user.admin? %>
     <div class="field columns is-vcentered m-0">
       <%= f.label :admin, class: "label column checkbox is-2 mb-0" %>
       <%= f.check_box :admin, class: "column is-10" %>
     </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit t("attributes.update"), class: "button is-rounded is-fullwidth is-link" %>

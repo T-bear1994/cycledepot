@@ -14,7 +14,7 @@
         <tr class="has-text-centered">
           <td class="is-size-5"><%= genre.name  %></td>
           <td class="is-size-5"><%= link_to "編集", edit_genre_path(genre), class: "button is-rounded is-link" %></td>
-          <td class="is-size-5"><%= link_to "削除", genre, data: { confirm: "#{genre.name}を削除してもよろしいですか？" }, class: "button is-rounded is-danger", method: :delete %></td>
+          <td class="is-size-5"><%= link_to "削除", genre, data: { confirm: "本当に削除してもよろしいですか？" }, class: "button is-rounded is-danger", method: :delete %></td>
         </tr>
       </tbody>
     <% end %>
