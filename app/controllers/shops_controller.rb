@@ -2,14 +2,12 @@ class ShopsController < ApplicationController
   before_action :set_shop, only: %i[ show edit update destroy ]
   before_action :only_admin, except: %i[ index show ]
 
-  # GET /shops or /shops.json
   def index
     @genres = Genre.all
-    @q = Shop.ransack(params[:q])
+    @q = Shop.includes(:genres, :favorites, :saved_shops).ransack(params[:q])
     @shops = @q.result(distinct: true).order(:id).page(params[:page])
   end
 
-  # GET /shops/1 or /shops/1.json
   def show
     if current_user
       add_browsing_histories
@@ -17,16 +15,13 @@ class ShopsController < ApplicationController
     end
   end
 
-  # GET /shops/new
   def new
     @shop = Shop.new
   end
 
-  # GET /shops/1/edit
   def edit
   end
 
-  # POST /shops or /shops.json
   def create
     @shop = Shop.new(shop_params)
 
@@ -41,7 +36,6 @@ class ShopsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /shops/1 or /shops/1.json
   def update
     respond_to do |format|
       if @shop.update(shop_params)
@@ -54,7 +48,6 @@ class ShopsController < ApplicationController
     end
   end
 
-  # DELETE /shops/1 or /shops/1.json
   def destroy
     @shop.destroy
 
@@ -65,30 +58,28 @@ class ShopsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_shop
-      @shop = Shop.find(params[:id])
+  def set_shop
+    @shop = Shop.find(params[:id])
+  end
+
+  def shop_params
+    params.require(:shop).permit(
+      :name, :prefecture, :city,
+      :address, :latitude, :longitude,
+      :business_hour, :cashless, :bike_rack,
+      :remarks, { genre_ids: []})
+  end
+
+  def add_browsing_histories
+      @browsing_history = BrowsingHistory.new
+      @browsing_history.user_id = current_user.id
+      @browsing_history.shop_id = @shop.id
+      @browsing_history.save!
     end
 
-    # Only allow a list of trusted parameters through.
-    def shop_params
-      params.require(:shop).permit(
-        :name, :prefecture, :city,
-        :address, :latitude, :longitude,
-        :business_hour, :cashless, :bike_rack,
-        :remarks, { genre_ids: []})
+  def delete_browsing_histories
+    if current_user.browsing_histories.count > 4
+      current_user.browsing_histories.first.destroy!
     end
-
-    def add_browsing_histories
-        @browsing_history = BrowsingHistory.new
-        @browsing_history.user_id = current_user.id
-        @browsing_history.shop_id = @shop.id
-        @browsing_history.save!
-    end
-
-    def delete_browsing_histories
-      if current_user.browsing_histories.count > 4
-        current_user.browsing_histories.first.destroy!
-      end
-    end
+  end
 end

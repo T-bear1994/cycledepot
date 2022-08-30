@@ -85,16 +85,6 @@
                 サイクルラック: <%= shop.bike_rack == true ? "有" : "無" %>
               </div>
             </div>
-            <footer class="card-footer is-vcentered">
-              <% if current_user %>
-                <div id="favorite-<%= shop.id %>" class="card-footer-item py-1">
-                  <%= render partial: "shops/favorite", remote: true, locals: { shop: shop } %>
-                </div>
-                <div id="saved-shop-<%= shop.id %>" class="card-footer-item py-1">
-                  <%= render partial: "shops/saved_shop", remote: true, locals: { shop: shop } %>
-                </div>
-              <% end %>
-            </footer>
           </div>
         </div>
       </div>

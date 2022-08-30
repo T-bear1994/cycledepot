@@ -17,3 +17,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+function initMap() {
+  const latitude = document.getElementById('latitude').value
+  const longitude = document.getElementById('longitude').value
+  const shop = { lat: parseFloat(latitude), lng: parseFloat(longitude) };
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 13,
+    center: shop,
+  });
+  const marker = new google.maps.Marker({
+    position: shop,
+    map: map,
+  });
+};
+window.initMap = initMap;
