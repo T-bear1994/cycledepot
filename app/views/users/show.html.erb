@@ -19,7 +19,7 @@
   <%= link_to "編集",  edit_user_registration_path, class: "button is-rounded is-fullwidth is-link" %>
 </div>
 
-<h2 class="is-underlined has-text-white has-text-weight-bold has-text-centered is-size-3">保存したショップ</h2>
+<h2 class="is-underlined has-text-white has-text-weight-bold has-text-centered is-size-3 mb-3">保存したショップ</h2>
 <section class="container">
   <div class="columns is-multiline is-centered">
     <% @saved_shops.each do |shop| %>
@@ -61,7 +61,7 @@
   </div>
 </section>
 
-<h2 class="is-underlined has-text-white has-text-weight-bold has-text-centered is-size-3">最近閲覧したショップ</h2>
+<h2 class="is-underlined has-text-white has-text-weight-bold has-text-centered is-size-3 mb-3">最近閲覧したショップ</h2>
 <section class="container">
   <div class="columns is-multiline is-centered">
     <% @user.browsing_histories.each do |browsing_history| %>
