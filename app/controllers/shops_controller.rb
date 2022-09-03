@@ -71,7 +71,7 @@ class ShopsController < ApplicationController
   end
 
   def add_browsing_histories
-    if BrowsingHistory.where(user_id: current_user.id, shop_id: @shop.id) == nil
+    if BrowsingHistory.where(user_id: current_user.id, shop_id: @shop.id) == []
       @browsing_history = BrowsingHistory.new
       @browsing_history.user_id = current_user.id
       @browsing_history.shop_id = @shop.id
