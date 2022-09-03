@@ -82,4 +82,7 @@
     <% end %>
   </div>
   <%= paginate @shops %>
+  <% if @shops == [] %>
+    <p class="has-text-white has-text-centered has-text-bold mb-3">※お探しの条件に当てはまるショップはありませんでした。</p>
+  <% end %>
 </section>
