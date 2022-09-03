@@ -57,4 +57,4 @@
   <%= link_to '戻る', shops_path, class: "button is-rounded is-link is-light is-fullwidth" %>
 </div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google_map_api_key %>&callback=initMap" async defer></script>
