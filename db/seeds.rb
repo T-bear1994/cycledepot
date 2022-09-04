@@ -130,14 +130,108 @@ ShopGenre.create!(
   ]
 )
 
-10.times do
-  User.find(rand(1..5)).saved_shops.create!(shop_id: rand(1..5))
-end
+User.find(1).saved_shops.create!(
+  [
+    {shop_id: "1"},
+    {shop_id: "4"}
+  ]
+)
 
-10.times do
-  User.find(rand(1..5)).favorites.create!(shop_id: rand(1..5))
-end
+User.find(2).saved_shops.create!(
+  [
+    {shop_id: "1"},
+    {shop_id: "2"}
+  ]
+)
 
-10.times do
-  User.find(rand(1..5)).browsing_histories.create!(shop_id: rand(1..5))
-end
+User.find(3).saved_shops.create!(
+  [
+    {shop_id: "2"},
+    {shop_id: "3"},
+    {shop_id: "5"}
+  ]
+)
+
+User.find(4).saved_shops.create!(
+  [
+    {shop_id: "1"},
+    {shop_id: "2"},
+    {shop_id: "4"},
+    {shop_id: "5"}
+  ]
+)
+
+User.find(1).favorites.create!(
+  [
+    {shop_id: "1"},
+    {shop_id: "4"},
+    {shop_id: "5"}
+  ]
+)
+
+User.find(2).favorites.create!(
+  [
+    {shop_id: "1"},
+    {shop_id: "2"},
+    {shop_id: "3"}
+  ]
+)
+
+User.find(3).favorites.create!(
+  [
+    {shop_id: "2"},
+    {shop_id: "3"},
+    {shop_id: "5"}
+  ]
+)
+
+User.find(4).favorites.create!(
+  [
+    {shop_id: "1"},
+    {shop_id: "4"},
+    {shop_id: "5"}
+  ]
+)
+
+User.find(5).favorites.create!(
+  [
+    {shop_id: "2"},
+    {shop_id: "3"},
+    {shop_id: "4"}
+  ]
+)
+
+User.find(1).browsing_histories.create!(
+  [
+    {shop_id: "1"},
+    {shop_id: "2"},
+    {shop_id: "3"},
+    {shop_id: "4"}
+  ]
+)
+
+User.find(2).browsing_histories.create!(
+  [
+    {shop_id: "4"}
+  ]
+)
+
+User.find(3).browsing_histories.create!(
+  [
+    {shop_id: "5"},
+    {shop_id: "4"}
+  ]
+)
+
+User.find(4).browsing_histories.create!(
+  [
+    {shop_id: "1"},
+    {shop_id: "2"}
+  ]
+)
+
+User.find(1).browsing_histories.create!(
+  [
+    {shop_id: "4"}
+  ]
+)
