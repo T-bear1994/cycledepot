@@ -41,6 +41,8 @@ ja:
           attributes:
             name:
               blank: を入力してください。
+            prefecture:
+              blank: を入力してください。
             city:
               blank: を入力してください。
             address:
