@@ -11,22 +11,22 @@
 
   <div class="field columns is-vcentered m-0">
     <%= f.label :name, class: "label column is-2 mb-0" %>
-    <%= f.text_field :name, class: "input column is-10 is-fullwidth", autofocus: true, autocomplete: "name" %>
+    <%= f.text_field :name, class: "input column is-10 is-fullwidth", autofocus: true, autocomplete: "name", :placeholder => "田中太郎" %>
   </div>
 
   <div class="field columns is-vcentered m-0">
     <%= f.label :email, class: "label column is-2 mb-0" %>
-    <%= f.email_field :email, class: "input column is-10 is-fullwidth", autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, class: "input column is-10 is-fullwidth", autofocus: true, autocomplete: "email", :placeholder => "tanaka@email.com" %>
   </div>
 
   <div class="field columns is-vcentered m-0">
     <%= f.label :password, class: "label column is-2 mb-0" %>
-    <%= f.password_field :password, class: "input column is-10 is-fullwidth", autocomplete: "new-password" %>
+    <%= f.password_field :password, class: "input column is-10 is-fullwidth", autocomplete: "new-password", :placeholder => "tarotanaka" %>
   </div>
 
   <div class="field columns is-vcetered m-0">
     <%= f.label :password_confirmation, class: "label column is-2 mb-0" %>
-    <%= f.password_field :password_confirmation, class: "input column is-10 is-fullwidth", autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, class: "input column is-10 is-fullwidth", autocomplete: "new-password", :placeholder => "tarotanaka" %>
   </div>
 
   <%= f.hidden_field :admin, value: false %>
