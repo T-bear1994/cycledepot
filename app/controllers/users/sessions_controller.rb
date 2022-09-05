@@ -4,4 +4,10 @@ class Users::SessionsController < Devise::SessionsController
     sign_in user
     redirect_to root_path, notice: "ゲストユーザーとしてログインしました。"
   end
+
+  def new_admin
+    user = User.admin
+    sign_in user
+    redirect_to root_path, notice: "アドミンユーザーとしてログインしました。"
+  end
 end
