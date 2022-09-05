@@ -1,6 +1,10 @@
 @import "bulma";
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap');
 
+.field_with_errors {
+  display: contents;
+}
+
 #map {
   height: 400px;
   width: 100%;
